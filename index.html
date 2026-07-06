@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read Later Debt Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="statement-header">
+    <div class="statement-meta">
+      <span class="statement-label">Backlog Statement</span>
+      <span class="statement-date" id="statementDate"></span>
+    </div>
+    <div class="statement-total">
+      <span class="statement-total-label">Total reading debt</span>
+      <span class="statement-total-value" id="totalDebtValue">0 days</span>
+    </div>
+  </header>
+
+  <section class="stats-bar" id="statsBar" aria-label="Backlog statistics">
+    <div class="stat-line">
+      <span class="stat-line-label">Unread items</span>
+      <span class="stat-line-dots"></span>
+      <span class="stat-line-value" id="statCount">0</span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-line-label">Total debt</span>
+      <span class="stat-line-dots"></span>
+      <span class="stat-line-value" id="statTotalDebt">0 days</span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-line-label">Average age</span>
+      <span class="stat-line-dots"></span>
+      <span class="stat-line-value" id="statAverage">0 days</span>
+    </div>
+    <div class="stat-line">
+      <span class="stat-line-label">Worst offender</span>
+      <span class="stat-line-dots"></span>
+      <span class="stat-line-value" id="statOldest">&mdash;</span>
+    </div>
+  </section>
+
+  <section class="add-section">
+    <h2 class="section-heading">File a new bookmark</h2>
+    <form id="addForm" class="add-form">
+      <div class="form-row">
+        <label for="titleInput">Title</label>
+        <input type="text" id="titleInput" name="title" placeholder="What did you save?" required>
+      </div>
+      <div class="form-row">
+        <label for="typeInput">Type</label>
+        <select id="typeInput" name="type">
+          <option value="article">Article</option>
+          <option value="video">Video</option>
+          <option value="course">Course</option>
+          <option value="book">Book</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="urlInput">URL <span class="optional-tag">(optional)</span></label>
+        <input type="url" id="urlInput" name="url" placeholder="https://...">
+      </div>
+      <button type="submit" class="btn btn-add">Add to the pile</button>
+    </form>
+  </section>
+
+  <section class="filter-section">
+    <h2 class="section-heading">Outstanding balance</h2>
+    <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by type">
+      <button class="filter-btn active" data-type="all">All</button>
+      <button class="filter-btn" data-type="article">Articles</button>
+      <button class="filter-btn" data-type="video">Videos</button>
+      <button class="filter-btn" data-type="course">Courses</button>
+      <button class="filter-btn" data-type="book">Books</button>
+    </div>
+  </section>
+
+  <section class="list-section">
+    <ul class="item-list" id="unreadList"></ul>
+  </section>
+
+  <section class="archive-section">
+    <button class="archive-toggle" id="archiveToggle" aria-expanded="false" aria-controls="archiveList">
+      <span>Archive</span>
+      <span class="archive-count" id="archiveCount">(0)</span>
+      <span class="archive-caret">&#9662;</span>
+    </button>
+    <ul class="item-list archive-list" id="archiveList" hidden></ul>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
